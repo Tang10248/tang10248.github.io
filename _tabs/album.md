@@ -23,4 +23,4 @@ order: 4
 -
 
 
-`Thank you for reading until the end.`
+`Thank you for reading till the end.`
