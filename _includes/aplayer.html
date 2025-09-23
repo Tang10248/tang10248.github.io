@@ -1,0 +1,29 @@
+{% comment %}
+APlayer 组件：支持 QQ 音乐（tencent）、网易云（netease）等平台
+参数说明：
+- server: 音乐平台（tencent=QQ音乐, netease=网易云, xiami=虾米）
+- type: 类型（song=歌曲, playlist=歌单, album=专辑）
+- id: 音乐/歌单/专辑的唯一ID
+- auto: 是否自动播放（0=否, 1=是，默认0）
+{% endcomment %}
+
+<div class="aplayer-container" style="margin: 1rem 0;">
+  <div 
+    class="aplayer" 
+    data-id="{{ include.id }}" 
+    data-server="{{ include.server | default: 'tencent' }}" 
+    data-type="{{ include.type | default: 'song' }}" 
+    data-auto="{{ include.auto | default: 0 }}"
+    data-theme="#4285f4"  <!-- 播放器主题色，可自定义（如 Chirpy 主题色） -->
+  ></div>
+</div>
+
+<!-- 初始化 APlayer（依赖 Meting.js） -->
+<script>
+  if (typeof Meting !== 'undefined') {
+    new Meting({
+      element: document.querySelector('.aplayer[data-id="{{ include.id }}"]'),
+      autoplay: {{ include.auto | default: 0 }}
+    });
+  }
+</script>
